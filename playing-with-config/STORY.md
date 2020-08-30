@@ -366,4 +366,7 @@ The line gives the error
 2020-08-30 08:43:13.373  WARN 37720 --- [           main] o.s.w.c.s.GenericWebApplicationContext   : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'demoApplication': Injection of autowired dependencies failed; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'customConfig' in value "${customConfig}"
 ```
 
+---
 
+I have fixed the tests with proper assertions based
+on test properties file values

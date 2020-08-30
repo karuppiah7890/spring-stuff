@@ -17,8 +17,8 @@ class DemoApplicationTests {
 
 	@Test
 	void contextLoads() {
-		assertEquals("someValue", customConfig);
-		assertEquals("anotherValue", anotherCustomConfig);
+		assertEquals("someTestValue", customConfig);
+		assertEquals("anotherTestValue", anotherCustomConfig);
 	}
 
 }
