@@ -18,11 +18,15 @@ class DemoApplicationTests {
     @Value("${configThatDoesNotExist:defaultValue}")
     String configThatDoesNotExist;
 
+    @Value("${interpolatedConfig}")
+    String interpolatedConfig;
+
     @Test
     void contextLoads() {
         assertEquals("someTestValue", customConfig);
         assertEquals("anotherTestValue", anotherCustomConfig);
         assertEquals("defaultValue", configThatDoesNotExist);
+        assertEquals("someTestValue-blah", interpolatedConfig);
     }
 
 }

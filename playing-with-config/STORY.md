@@ -462,4 +462,18 @@ properties when fetching them using `@Value`
 String configThatDoesNotExist;
 ```
 
+---
 
+I want to see if one can have derived config. Like,
+one config dependent on another config - let's say,
+interpolate the value of one config in another config
+
+Wow! It's possible! With this -
+
+```properties
+anotherCustomConfig=anotherTestValue
+customConfig=someTestValue
+interpolatedConfig=${customConfig}-blah
+```
+
+The value of `interpolateConfig` was `someTestValue-blah`
