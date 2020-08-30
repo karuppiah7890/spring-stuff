@@ -379,3 +379,87 @@ activated it for a new test class and tried it out.
 The default test properties and profile test properties
 were merged this time, with profile properties being
 high priority.
+
+---
+
+I tried to use environment variables for setting
+configuration, but it didn't work out. I couldn't
+override because I was trying it the wrong way :P
+
+I wasn't sure about the priority of values - if
+properties file are more priority or environment
+variables
+
+I found this list then
+https://docs.spring.io/spring-boot/docs/current/reference/html/spring-boot-features.html#boot-features-external-config
+
+It has a list, but I didn't understand the priority.
+Now I realized that the priority is top to bottom -
+higher to lower. So, environment variables have more
+priority than application properties files
+
+```shell script
+$ ANOTHERCUSTOMCONFIG=blah ./gradlew test
+> Task :compileJava UP-TO-DATE
+> Task :processResources UP-TO-DATE
+> Task :classes UP-TO-DATE
+> Task :compileTestJava UP-TO-DATE
+> Task :processTestResources UP-TO-DATE
+> Task :testClasses UP-TO-DATE
+
+> Task :test
+
+com.example.playingwithconfig.AnotherDemoApplicationTests > contextLoads() FAILED
+    org.opentest4j.AssertionFailedError at AnotherDemoApplicationTests.java:22
+
+com.example.playingwithconfig.DemoApplicationTests > contextLoads() FAILED
+    org.opentest4j.AssertionFailedError at DemoApplicationTests.java:24
+2020-08-30 09:58:55.122  INFO 23956 --- [extShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-08-30 09:58:55.122  INFO 23956 --- [extShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+
+2 tests completed, 2 failed
+
+> Task :test FAILED
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':test'.
+> There were failing tests. See the report at: file:///Users/karuppiahn/oss/github.com/karuppiah7890/spring-stuff/playing-with-config/build/reports/tests/test/index.html
+
+* Try:
+Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more log output. Run with --scan to get full insights.
+
+* Get more help at https://help.gradle.org
+
+BUILD FAILED in 4s
+5 actionable tasks: 1 executed, 4 up-to-date
+```
+
+That failed because I put some random value through
+environment variable, and the expectation was different -
+based on the properties file value
+
+I also found some articles to understand stuff related
+to environment variables -
+
+https://blog.indrek.io/articles/using-environment-variables-with-spring-boot/
+
+I also found the docs here really helpful
+
+How to convert config / property name to environment
+variable name - 
+https://docs.spring.io/spring-boot/docs/current/reference/html/spring-boot-features.html#boot-features-external-config-relaxed-binding-from-environment-variables
+
+A lot about external config here
+https://docs.spring.io/spring-boot/docs/current/reference/html/spring-boot-features.html#boot-features-external-config
+
+I also found out how to provide default values for
+properties when fetching them using `@Value`
+
+```java
+@Value("${configThatDoesNotExist:defaultValue}")
+String configThatDoesNotExist;
+```
+
+

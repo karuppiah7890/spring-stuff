@@ -15,10 +15,14 @@ class DemoApplicationTests {
     @Value("${anotherCustomConfig}")
     String anotherCustomConfig;
 
+    @Value("${configThatDoesNotExist:defaultValue}")
+    String configThatDoesNotExist;
+
     @Test
     void contextLoads() {
         assertEquals("someTestValue", customConfig);
         assertEquals("anotherTestValue", anotherCustomConfig);
+        assertEquals("defaultValue", configThatDoesNotExist);
     }
 
 }
