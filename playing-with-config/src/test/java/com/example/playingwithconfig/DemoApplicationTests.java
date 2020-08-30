@@ -9,16 +9,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest
 class DemoApplicationTests {
 
-	@Value("${customConfig}")
-	String customConfig;
+    @Value("${customConfig}")
+    String customConfig;
 
-	@Value("${anotherCustomConfig}")
-	String anotherCustomConfig;
+    @Value("${anotherCustomConfig}")
+    String anotherCustomConfig;
 
-	@Test
-	void contextLoads() {
-		assertEquals("someTestValue", customConfig);
-		assertEquals("anotherTestValue", anotherCustomConfig);
-	}
+    @Test
+    void contextLoads() {
+        assertEquals("someTestValue", customConfig);
+        assertEquals("anotherTestValue", anotherCustomConfig);
+    }
 
 }
