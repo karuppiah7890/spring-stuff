@@ -370,3 +370,12 @@ The line gives the error
 
 I have fixed the tests with proper assertions based
 on test properties file values
+
+---
+
+This time I used a "profile" and created properties file
+in the tests for this new profile "anotherProfile" and
+activated it for a new test class and tried it out.
+The default test properties and profile test properties
+were merged this time, with profile properties being
+high priority.
