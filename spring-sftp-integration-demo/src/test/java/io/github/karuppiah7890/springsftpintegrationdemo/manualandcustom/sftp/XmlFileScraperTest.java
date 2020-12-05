@@ -1,6 +1,5 @@
 package io.github.karuppiah7890.springsftpintegrationdemo.manualandcustom.sftp;
 
-import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -8,6 +7,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.mock.mockito.SpyBean;
 import org.springframework.test.context.TestPropertySource;
 
+import java.io.IOException;
 import java.time.Instant;
 
 import static org.awaitility.Awaitility.await;
@@ -27,9 +27,8 @@ class XmlFileScraperTest {
   SftpClient sftpClient;
 
   // This is to test the @Schedule fixedDelayString config changes
-  @SneakyThrows
   @Test
-  void checkFixedDelayConfig() {
+  void checkFixedDelayConfig() throws IOException {
     reset(xmlFileScraper);
     doAnswer(invocation -> {
       Instant startTime = Instant.now();
