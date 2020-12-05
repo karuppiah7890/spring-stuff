@@ -1,5 +1,7 @@
 package com.example.playingwithconfig;
 
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -20,6 +22,16 @@ class DemoApplicationTests {
 
     @Value("${interpolatedConfig}")
     String interpolatedConfig;
+
+    @BeforeAll
+    static void setup() {
+        System.out.println("dummy");
+    }
+
+    @BeforeEach
+    void setupForEach() {
+        System.out.println("dummy");
+    }
 
     @Test
     void contextLoads() {
