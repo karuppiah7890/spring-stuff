@@ -8,7 +8,7 @@ maybe even map it into another object dynamically and then
 call another service with it or maybe just log it for now.
 So, with this aim, I'm going to try out stuff!
 
-While bootstrapping the project, I missed to add the
+While bootstrapping the project, I missed adding the
 Spring Integration dependencies 😅 I think it's these
 two - one for source code and another for test code
 
@@ -20,4 +20,7 @@ testImplementation 'org.springframework.integration:spring-integration-test'
 I need to add these two and then I would be good to go
 I think! :)
 
+---
+
+I'm gonna start by upgrading the Gradle version to 6.7.1
 
