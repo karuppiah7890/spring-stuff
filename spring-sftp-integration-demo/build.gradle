@@ -7,6 +7,11 @@ plugins {
 group = 'io.github.karuppiah7890'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '15'
+targetCompatibility = '15'
+
+if (JavaVersion.current() != JavaVersion.VERSION_15) {
+    throw new GradleException("This build must be run with java 15")
+}
 
 configurations {
 	compileOnly {
