@@ -3,9 +3,6 @@ package io.github.karuppiah7890.springsftpintegrationdemo.builtinexistingautomat
 import com.jcraft.jsch.ChannelSftp;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.expression.Expression;
-import org.springframework.expression.ExpressionParser;
-import org.springframework.expression.spel.standard.SpelExpressionParser;
 import org.springframework.integration.annotation.InboundChannelAdapter;
 import org.springframework.integration.annotation.Poller;
 import org.springframework.integration.annotation.ServiceActivator;
@@ -14,7 +11,6 @@ import org.springframework.integration.core.MessageSource;
 import org.springframework.integration.file.filters.AcceptAllFileListFilter;
 import org.springframework.integration.file.remote.session.CachingSessionFactory;
 import org.springframework.integration.file.remote.session.SessionFactory;
-import org.springframework.integration.handler.advice.ExpressionEvaluatingRequestHandlerAdvice;
 import org.springframework.integration.sftp.inbound.SftpStreamingMessageSource;
 import org.springframework.integration.sftp.session.DefaultSftpSessionFactory;
 import org.springframework.integration.sftp.session.SftpRemoteFileTemplate;
@@ -57,20 +53,9 @@ public class SftpIntegration {
     return new CachingSessionFactory<>(factory);
   }
 
-  @ServiceActivator(inputChannel = "data", adviceChain = "after")
+  @ServiceActivator(inputChannel = "data")
   @Bean
   public MessageHandler handle() {
     return System.out::println;
-  }
-
-  @Bean
-  public ExpressionEvaluatingRequestHandlerAdvice after() {
-    ExpressionEvaluatingRequestHandlerAdvice advice = new ExpressionEvaluatingRequestHandlerAdvice();
-    ExpressionParser expressionParser = new SpelExpressionParser();
-    String expressionString = "@template.remove(headers['file_remoteDirectory'] + headers['file_remoteFile'])";
-    Expression expression = expressionParser.parseExpression(expressionString);
-    advice.setOnSuccessExpression(expression);
-    advice.setPropagateEvaluationFailures(true);
-    return advice;
   }
 }
