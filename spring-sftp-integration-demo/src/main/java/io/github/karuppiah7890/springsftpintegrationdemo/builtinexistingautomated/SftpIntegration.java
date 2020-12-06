@@ -32,12 +32,6 @@ public class SftpIntegration {
   }
 
   @Bean
-  @Transformer(inputChannel = "stream", outputChannel = "data")
-  public org.springframework.integration.transformer.Transformer transformer() {
-    return new StreamTransformer("UTF-8");
-  }
-
-  @Bean
   public SftpRemoteFileTemplate template() {
     return new SftpRemoteFileTemplate(sftpSessionFactory());
   }
@@ -51,6 +45,12 @@ public class SftpIntegration {
     factory.setPassword("admin");
     factory.setAllowUnknownKeys(true);
     return new CachingSessionFactory<>(factory);
+  }
+
+  @Bean
+  @Transformer(inputChannel = "stream", outputChannel = "data")
+  public org.springframework.integration.transformer.Transformer transformer() {
+    return new StreamTransformer("UTF-8");
   }
 
   @ServiceActivator(inputChannel = "data")
