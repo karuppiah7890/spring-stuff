@@ -2,10 +2,12 @@ package io.github.karuppiah7890.springsftpintegrationdemo.builtinexistingautomat
 
 import com.jcraft.jsch.ChannelSftp;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.expression.Expression;
 import org.springframework.expression.ExpressionParser;
 import org.springframework.expression.spel.standard.SpelExpressionParser;
 import org.springframework.integration.annotation.InboundChannelAdapter;
+import org.springframework.integration.annotation.Poller;
 import org.springframework.integration.annotation.ServiceActivator;
 import org.springframework.integration.annotation.Transformer;
 import org.springframework.integration.core.MessageSource;
@@ -21,9 +23,10 @@ import org.springframework.messaging.MessageHandler;
 
 import java.io.InputStream;
 
+@Configuration
 public class SftpIntegration {
   @Bean
-  @InboundChannelAdapter(channel = "stream")
+  @InboundChannelAdapter(channel = "stream", poller = @Poller(fixedDelay = "5000"))
   public MessageSource<InputStream> ftpMessageSource() {
     SftpStreamingMessageSource messageSource = new SftpStreamingMessageSource(template());
     messageSource.setRemoteDirectory("/");

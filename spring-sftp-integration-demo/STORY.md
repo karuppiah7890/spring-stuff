@@ -191,4 +191,10 @@ https://duckduckgo.com/?t=ffab&q=spEL+%3A+expected+Expression+provided+String&ia
 
 https://www.baeldung.com/spring-expression-language
 
+----
+
+```shell
+java.lang.IllegalArgumentException: No poller has been defined for Annotation-based endpoint, and no default poller is available within the context.
+```
+
 
