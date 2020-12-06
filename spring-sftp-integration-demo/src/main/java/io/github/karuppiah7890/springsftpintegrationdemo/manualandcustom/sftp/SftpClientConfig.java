@@ -5,7 +5,7 @@ import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
-@ConfigurationProperties(prefix = "integrations.sftp.connection")
+@ConfigurationProperties(prefix = "integrations.sftp.custom.connection")
 @Configuration
 @Getter
 @Setter

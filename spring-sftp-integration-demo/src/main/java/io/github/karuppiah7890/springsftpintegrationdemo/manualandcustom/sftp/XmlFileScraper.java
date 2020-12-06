@@ -16,7 +16,7 @@ import java.util.List;
 @Slf4j
 @Component
 @EnableScheduling
-@ConditionalOnProperty({"integrations.sftp.enabled"})
+@ConditionalOnProperty({"integrations.sftp.custom.enabled"})
 public class XmlFileScraper {
   private final SftpClient sftpClient;
 
@@ -24,7 +24,7 @@ public class XmlFileScraper {
     this.sftpClient = sftpClient;
   }
 
-  @Scheduled(fixedDelayString = "${integrations.sftp.poll.interval}")
+  @Scheduled(fixedDelayString = "${integrations.sftp.custom.poll.interval}")
   public void xmlScrapingPoll() throws IOException {
     log.info("XML Scraping poll invoked");
     // Connect to SFTP Server

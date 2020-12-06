@@ -14,8 +14,8 @@ import static org.awaitility.Awaitility.await;
 import static org.mockito.Mockito.*;
 
 @TestPropertySource(properties = {
-  "integrations.sftp.enabled=true",
-  "integrations.sftp.poll.interval=100",
+  "integrations.sftp.custom.enabled=true",
+  "integrations.sftp.custom.poll.interval=100",
 })
 @SpringBootTest
 @Slf4j
