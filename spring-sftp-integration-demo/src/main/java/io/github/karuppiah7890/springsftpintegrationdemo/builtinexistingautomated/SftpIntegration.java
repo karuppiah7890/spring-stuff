@@ -27,7 +27,7 @@ public class SftpIntegration {
     SftpStreamingMessageSource messageSource = new SftpStreamingMessageSource(template());
     messageSource.setRemoteDirectory("/");
     messageSource.setFilter(new AcceptAllFileListFilter<>());
-    messageSource.setMaxFetchSize(1);
+    messageSource.setMaxFetchSize(5);
     return messageSource;
   }
 
