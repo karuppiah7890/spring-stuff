@@ -197,4 +197,33 @@ https://www.baeldung.com/spring-expression-language
 java.lang.IllegalArgumentException: No poller has been defined for Annotation-based endpoint, and no default poller is available within the context.
 ```
 
+---
 
+https://www.sftp.net/public-online-sftp-servers
+
+https://www.google.com/search?q=spring+integration+sftp+example+with+spring+boot&oq=spring+integration+sftp
+
+---
+
+Spring Cloud Stuff
+
+https://github.com/spring-cloud-stream-app-starters
+
+https://github.com/spring-cloud-stream-app-starters/sftp
+
+---
+
+https://stackoverflow.com/questions/7215931/reading-huge-xml-file-using-stax-and-xpath
+
+https://www.baeldung.com/java-xpath
+
+---
+
+https://docs.spring.io/spring-integration/reference/html/file.html#remote-persistent-flf
+
+There's something called `SftpPersistentAcceptOnceFileListFilter` based on in-memory data
+store `SimpleMetadataStore`
+
+---
+
+https://duckduckgo.com/?t=ffab&q=spring+integration+message+handler&ia=web
