@@ -11,11 +11,15 @@ import org.springframework.integration.core.MessageSource;
 import org.springframework.integration.file.filters.AcceptAllFileListFilter;
 import org.springframework.integration.file.remote.session.CachingSessionFactory;
 import org.springframework.integration.file.remote.session.SessionFactory;
+import org.springframework.integration.sftp.inbound.SftpInboundFileSynchronizingMessageSource;
 import org.springframework.integration.sftp.inbound.SftpStreamingMessageSource;
+import org.springframework.integration.sftp.outbound.SftpMessageHandler;
 import org.springframework.integration.sftp.session.DefaultSftpSessionFactory;
 import org.springframework.integration.sftp.session.SftpRemoteFileTemplate;
 import org.springframework.integration.transformer.StreamTransformer;
+import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageHandler;
+import org.springframework.messaging.MessagingException;
 
 import java.io.InputStream;
 
@@ -56,6 +60,11 @@ public class SftpIntegration {
   @ServiceActivator(inputChannel = "data")
   @Bean
   public MessageHandler handle() {
-    return System.out::println;
+    return new MessageHandler() {
+      @Override
+      public void handleMessage(Message<?> message) {
+        Object payload = message.getPayload();
+      }
+    };
   }
 }
