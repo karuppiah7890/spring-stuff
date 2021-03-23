@@ -1,0 +1,46 @@
+name: Test
+on:
+  # Run CI on all pushes to the master and release/** branches, and on all new
+  # pull requests, and on all pushes to pull requests (even if a pull request
+  # is not against master).
+  push:
+    branches:
+      - "master"
+      - "releases/**"
+  pull_request:
+env:
+  DOCKER_COMPOSE_VERSION: 1.24.1
+defaults:
+  run:
+    shell: bash
+jobs:
+  test:
+    runs-on: ubuntu-18.04
+    name: "test"
+    steps:
+      - name: Pin docker-compose
+        run: |
+          sudo rm /usr/local/bin/docker-compose
+          curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+          chmod +x docker-compose
+          sudo mv docker-compose /usr/local/bin
+
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install and test
+        run: |
+          echo "Testing initial install"
+          ./install.sh
+          ./test.sh
+          echo "Testing in-place upgrade"
+          # Also test plugin installation here
+          echo "sentry-auth-oidc" >> sentry/requirements.txt
+          ./install.sh --minimize-downtime
+          ./test.sh
+
+      - name: Inspect failure
+        if: failure()
+        run: |
+          docker-compose ps
+          docker-compose logs
